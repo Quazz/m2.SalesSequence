@@ -11,6 +11,7 @@ use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\ActionInterface;
 use Magento\SalesSequence\Model\ProfileFactory;
 use Magento\SalesSequence\Model\MetaFactory;
+use Magento\Framework\App\RequestInterface;
 
 /**
  * Sequence Profile Controller
@@ -70,12 +71,14 @@ abstract class Profile implements ActionInterface
         Registry $coreRegistry,
         ProfileFactory $profileFactory,
         MetaFactory $metaFactory,
-        PageFactory $resultPageFactory
+        PageFactory $resultPageFactory,
+        RequestInterface $request
     ) {
         $this->_coreRegistry = $coreRegistry;
-		$this->_profile = $profileFactory->create();
-		$this->_meta = $metaFactory->create();
-		$this->resultPageFactory = $resultPageFactory;
+        $this->_profile = $profileFactory->create();
+        $this->_meta = $metaFactory->create();
+        $this->resultPageFactory = $resultPageFactory;
+        $this->request = $request;
     }
 
     /**
@@ -85,15 +88,15 @@ abstract class Profile implements ActionInterface
      */
     protected function _initProfile()
     {
-        $profileId = $this->getRequest()->getParam('profile_id');
+        $profileId = $this->request->getParam('profile_id');
         if ($profileId) {
-			$profile = $this->_profile->load($profileId);
-			if ($profile) {
-				$meta = $this->_meta->load($profile->getMetaId());
-				$profile->setData('entity_type', $meta->getEntityType());
-				$profile->setData('store_id', $meta->getStoreId());
-				return $profile;			
-			}
+            $profile = $this->_profile->load($profileId);
+            if ($profile) {
+                $meta = $this->_meta->load($profile->getMetaId());
+                $profile->setData('entity_type', $meta->getEntityType());
+                $profile->setData('store_id', $meta->getStoreId());
+                return $profile;
+            }
         }
         return false;
     }
