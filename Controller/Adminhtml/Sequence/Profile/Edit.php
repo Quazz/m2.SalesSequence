@@ -23,9 +23,9 @@ class Edit extends AbstractController
         $profile = $this->_initProfile();
         if ($profile) {
             $this->_coreRegistry->register(
-				'current_sequence_profile', 
-				$profile
-			);
+                'current_sequence_profile', 
+                $profile
+            );
             /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
             $resultPage = $this->resultPageFactory->create();
             $resultPage->setActiveMenu(self::ACTIVE_MENU);
@@ -34,8 +34,8 @@ class Edit extends AbstractController
             return $resultPage;
         } else {
             $this->messageManager->addError(
-				__('We can\'t find this sequence profile.')
-			);
+                __('We can\'t find this sequence profile.')
+            );
             /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
             $resultRedirect = $this->resultRedirectFactory->create();
             return $resultRedirect->setPath('sales/');
