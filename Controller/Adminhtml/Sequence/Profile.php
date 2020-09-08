@@ -8,15 +8,14 @@ namespace Faonni\SalesSequence\Controller\Adminhtml\Sequence;
 
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\ActionInterface;
 use Magento\SalesSequence\Model\ProfileFactory;
 use Magento\SalesSequence\Model\MetaFactory;
 
 /**
  * Sequence Profile Controller
  */
-abstract class Profile extends Action
+abstract class Profile implements ActionInterface
 {
     /**
      * Authorization level of a basic admin session
@@ -68,20 +67,15 @@ abstract class Profile extends Action
      * @param PageFactory $resultPageFactory     
      */
     public function __construct(
-        Context $context,
         Registry $coreRegistry,
-		ProfileFactory $profileFactory,
-		MetaFactory $metaFactory,
-		PageFactory $resultPageFactory
+        ProfileFactory $profileFactory,
+        MetaFactory $metaFactory,
+        PageFactory $resultPageFactory
     ) {
         $this->_coreRegistry = $coreRegistry;
 		$this->_profile = $profileFactory->create();
 		$this->_meta = $metaFactory->create();
 		$this->resultPageFactory = $resultPageFactory;
-		
-        parent::__construct(
-			$context
-		);
     }
 
     /**
