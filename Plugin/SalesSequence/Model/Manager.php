@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 namespace Faonni\SalesSequence\Plugin\SalesSequence\Model;
@@ -31,7 +31,7 @@ class Manager
 
     /**
      * Initialize Manager
-	 *
+     *
      * @param ResourceSequenceMeta $resourceSequenceMeta
      * @param SequenceFactory $sequenceFactory
      */
@@ -42,23 +42,23 @@ class Manager
         $this->resourceSequenceMeta = $resourceSequenceMeta;
         $this->sequenceFactory = $sequenceFactory;
     }
-    
+
     /**
      * Returns sequence for given entityType and store
      *
      * @param $subject Manager
-     * @param $proceed \Callable	
+     * @param $proceed \Callable
      * @param string $entityType
-     * @param int $storeId   
+     * @param int $storeId
      * @return \Magento\Framework\DB\Sequence\SequenceInterface
-     */	
-    public function aroundGetSequence($subject, $proceed, $entityType, $storeId) 
+     */
+    public function aroundGetSequence($subject, $proceed, $entityType, $storeId)
     {
-		$meta = $this->resourceSequenceMeta->loadByEntityTypeAndStore($entityType, $storeId);
-		$pattern = $meta->getActiveProfile()->getPattern();
+        $meta = $this->resourceSequenceMeta->loadByEntityTypeAndStore($entityType, $storeId);
+        $pattern = $meta->getActiveProfile()->getPattern();
         return $this->sequenceFactory->create([
-			'meta' => $meta,
-			'pattern' => $pattern ?: Sequence::DEFAULT_PATTERN
-		]);		
-    }	
+            'meta' => $meta,
+            'pattern' => $pattern ?: Sequence::DEFAULT_PATTERN
+        ]);
+    }
 }
