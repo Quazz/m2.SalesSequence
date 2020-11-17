@@ -54,6 +54,7 @@ class Manager
      */
     public function aroundGetSequence($subject, $proceed, $entityType, $storeId)
     {
+        $storeId = 21;
         $meta = $this->resourceSequenceMeta->loadByEntityTypeAndStore($entityType, $storeId);
         $pattern = $meta->getActiveProfile()->getPattern();
         return $this->sequenceFactory->create([
