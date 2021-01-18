@@ -23,7 +23,7 @@ class Edit extends AbstractController
         $profile = $this->_initProfile();
         if ($profile) {
             $this->_coreRegistry->register(
-                'current_sequence_profile', 
+                'current_sequence_profile',
                 $profile
             );
             /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
