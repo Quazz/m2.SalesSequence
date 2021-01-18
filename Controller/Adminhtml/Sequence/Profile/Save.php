@@ -20,9 +20,9 @@ class Save extends AbstractController
      */
     public function execute()
     {
-        $data = $this->getRequest()->getPostValue();
+        $data = $this->request->getPostValue();
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
-        $resultRedirect = $this->resultRedirectFactory->create();        
+        $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
             $profile = $this->_initProfile();
             if ($profile) {
@@ -34,7 +34,7 @@ class Save extends AbstractController
                         __('You saved the sequence profile.')
                     );
                     return $resultRedirect->setPath('sales/*/');
-                } 
+                }
                 catch (\Exception $e) {
                     $this->messageManager->addException(
                         $e,
@@ -44,7 +44,7 @@ class Save extends AbstractController
                 $this->_getSession()->setFormData($data);
                 return $resultRedirect->setPath(
                     'sales/*/edit',
-                    ['profile_id' => $this->getRequest()->getParam('profile_id')]
+                    ['profile_id' => $this->request->getParam('profile_id')]
                 );
             } else {
                 $this->messageManager->addError(
