@@ -2,14 +2,14 @@
 <!--
 /**
  * Copyright © 2011-2018 Karliuka Vitalii(karliuka.vitalii@gmail.com)
- * 
+ *
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="Magento\SalesSequence\Model\Builder" type="Faonni\SalesSequence\Model\Builder" />		
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\SalesSequence\Model\Builder" type="Faonni\SalesSequence\Model\Builder" />
     <type name="\Magento\SalesSequence\Model\Manager">
         <plugin name="faonni_salessequence" type="Faonni\SalesSequence\Plugin\SalesSequence\Model\Manager" />
-	</type>
+    </type>
 </config>
